@@ -1,0 +1,17 @@
+{
+  "name": "koa-ts",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "ts-node src/app.ts",
+    "dev": "nodemon --watch src/**/* -e ts,tsx --exec ts-node src/app.ts",
+    "build": "webpack --config ./build/webpack.product.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/koa": "^2.11.1",
+    "koa": "^2.11.0"
+  }
+}
