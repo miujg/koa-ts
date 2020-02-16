@@ -12,6 +12,10 @@
   "license": "ISC",
   "dependencies": {
     "@types/koa": "^2.11.1",
-    "koa": "^2.11.0"
+    "@types/koa-router": "^7.4.0",
+    "@types/mongodb": "^3.3.16",
+    "koa": "^2.11.0",
+    "koa-router": "^8.0.8",
+    "mongodb": "^3.5.3"
   }
 }
