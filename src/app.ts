@@ -7,6 +7,15 @@ const app = new Koa(),
     db = new Db()
 
 router.get('/', async (ctx) => {
+    const users = await db.find('users', {})
+    console.log(users)
+    // 测试添加
+
+    interface User{
+        name:string
+    }
+    const result = await db.insertMany<User>('users',[{name: '888'}])
+    console.log(result)
     ctx.body = 'index'
 })
 
