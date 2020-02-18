@@ -8,7 +8,17 @@ import mongodb from 'mongodb'
 
 const MongoClient = mongodb.MongoClient
 
-class Db {
+interface DBI {
+    insert<T>(collectionName:string, doc:T):Promise<boolean>
+    insertMany<T>(collectionName:string, docs:T[]):Promise<boolean>
+    delete(collectionName:string, filter:object):Promise<boolean>
+    update(collectionName:string, filter:object, update:object):Promise<boolean>
+    find(collectionName:string, filter:object):Promise<any[]>
+    aggregate(collectionName:string, pipeline:object[]):Promise<any[]>
+}
+
+
+class Db implements DBI {
     public client:mongodb.MongoClient | undefined
     static instance:Db | null
 
@@ -22,7 +32,7 @@ class Db {
         this.connection()
     }
 
-    connection() {
+    connection():Promise<mongodb.MongoClient> {
         return new Promise<mongodb.MongoClient>((resolve, reject) => {
             if(!this.client) {
                 MongoClient.connect(config.url, {useUnifiedTopology:true}, (err, client) => {
